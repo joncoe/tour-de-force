@@ -1,4 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata");
 body {
-  background: #fc0; }
+  font-family: 'Inconsolata', helvetica; }
 
 /*# sourceMappingURL=main.css.map */
