@@ -14,9 +14,10 @@
   "scripts": {
     "client": "react-scripts start",
     "server": "nodemon lib/server.js  --ignore src/",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"  \"npm run sass\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "sass --watch src/styles/scss:src/styles/css"
   }
 }
