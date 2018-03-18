@@ -5,7 +5,7 @@ class App extends Component {
     return (
       <div>
         <header>
-          <h1>app!</h1>
+          <h1>Start of my nice app.</h1>
         </header>
         <p>
 
