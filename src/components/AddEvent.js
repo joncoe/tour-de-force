@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { CountryDropdown } from 'react-country-region-selector';
+import axios from 'axios';
 
 class AddEvent extends Component {
   constructor() {
     super();
     this.state = {
-      eventCity: '',
-      eventCountry: 'CA',
-      eventVenue: '',
-      performanceDate: '',
+      eventCity: 'Toronto',
+      eventCountry: 'Canada',
+      venueName: 'Coda',
+      performanceDate: '2018-06-06',
       status: 'Add New Event'
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.selectCountry = this.selectCountry.bind(this);
+    this.addEvent = this.addEvent.bind(this);
   }
 
   handleInputChange(event) {
@@ -28,6 +29,25 @@ class AddEvent extends Component {
 
   selectCountry(val) {
     this.setState({ eventCountry: val });
+  }
+
+  addEvent(e) {
+    e.preventDefault();
+    const { eventCity, eventCountry, venueName, performanceDate } = this.state;
+    axios
+      .post('/addNewEvent', {
+        eventCity,
+        eventCountry,
+        venueName,
+        performanceDate
+      })
+      .then(() => {
+        this.setState({ status: 'Event Added' });
+      })
+      .catch(err => {
+        console.log(err.message);
+        this.setState({ status: 'ERROR' });
+      });
   }
 
   render() {
@@ -49,10 +69,13 @@ class AddEvent extends Component {
 
           <div className="input-roup">
             <label>Country</label>
-            <CountryDropdown
+            <input
+              type="text"
+              name="eventCountry"
+              placeholder="Country"
               value={this.state.eventCountry}
-              onChange={this.selectCountry}
-              valueType="short"
+              onChange={this.handleInputChange}
+              required
             />
           </div>
 
@@ -60,9 +83,9 @@ class AddEvent extends Component {
             <label>Venue</label>
             <input
               type="text"
-              name="eventVenue"
+              name="venueName"
               placeholder="Venue"
-              value={this.state.eventVenue}
+              value={this.state.venueName}
               onChange={this.handleInputChange}
               required
             />
@@ -79,7 +102,11 @@ class AddEvent extends Component {
               required
             />
           </div>
-          <button onClick={this.addEvent}>{this.state.status}</button>
+          <input
+            type="submit"
+            value={this.state.status}
+            onClick={this.addEvent}
+          />
         </div>
       </div>
     );
