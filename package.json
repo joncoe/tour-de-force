@@ -8,6 +8,7 @@
     "express": "^4.16.3",
     "mongoose": "^5.0.9",
     "react": "^16.2.0",
+    "react-country-region-selector": "^1.2.3",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1"
@@ -18,8 +19,7 @@
   "scripts": {
     "client": "react-scripts start",
     "server": "nodemon lib/server.js  --ignore src/",
-    "start":
-      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"  \"npm run sass\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"  \"npm run sass\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

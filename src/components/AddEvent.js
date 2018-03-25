@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import { CountryDropdown } from 'react-country-region-selector';
 
 class AddEvent extends Component {
   constructor() {
     super();
     this.state = {
       eventCity: '',
-      eventCountry: '',
+      eventCountry: 'CA',
       eventVenue: '',
-      performanceDate: ''
+      performanceDate: '',
+      status: 'Add New Event'
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.selectCountry = this.selectCountry.bind(this);
   }
 
   handleInputChange(event) {
@@ -21,6 +24,10 @@ class AddEvent extends Component {
     this.setState({
       [name]: value
     });
+  }
+
+  selectCountry(val) {
+    this.setState({ eventCountry: val });
   }
 
   render() {
@@ -42,13 +49,10 @@ class AddEvent extends Component {
 
           <div className="input-roup">
             <label>Country</label>
-            <input
-              type="text"
-              name="eventCountry"
-              placeholder="Country"
+            <CountryDropdown
               value={this.state.eventCountry}
-              onChange={this.handleInputChange}
-              required
+              onChange={this.selectCountry}
+              valueType="short"
             />
           </div>
 
@@ -75,7 +79,7 @@ class AddEvent extends Component {
               required
             />
           </div>
-          <button onClick={this.addEvent}>Add New Event</button>
+          <button onClick={this.addEvent}>{this.state.status}</button>
         </div>
       </div>
     );
