@@ -47,6 +47,7 @@ class AddEvent extends Component {
               name="eventCountry"
               placeholder="Country"
               {this.state.eventCountry}
+              value={this.state.eventCountry}
               onChange={this.handleInputChange}
               required
             />
@@ -58,7 +59,7 @@ class AddEvent extends Component {
               type="text"
               name="eventVenue"
               placeholder="Venue"
-              {this.state.eventVenue}
+              value={this.state.eventVenue}
               onChange={this.handleInputChange}
               required
             />
@@ -70,7 +71,7 @@ class AddEvent extends Component {
               type="date"
               name="performanceDate"
               placeholder="Performance Date"
-              {this.state.performanceDate}
+              value={this.state.performanceDate}
               onChange={this.handleInputChange}
               required
             />
