@@ -46,7 +46,6 @@ class AddEvent extends Component {
               type="text"
               name="eventCountry"
               placeholder="Country"
-              {this.state.eventCountry}
               value={this.state.eventCountry}
               onChange={this.handleInputChange}
               required
