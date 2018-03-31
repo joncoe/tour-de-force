@@ -13,7 +13,7 @@ class ListEvents extends Component {
 
   refresh() {
     axios
-      .get('/getAllEvents')
+      .get('/event/all')
       .then(res => {
         if (res.data.payload) {
           console.log('set the state');

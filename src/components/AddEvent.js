@@ -35,7 +35,7 @@ class AddEvent extends Component {
     e.preventDefault();
     const { eventCity, eventCountry, venueName, performanceDate } = this.state;
     axios
-      .post('/addNewEvent', {
+      .post('/event/add', {
         eventCity,
         eventCountry,
         venueName,
