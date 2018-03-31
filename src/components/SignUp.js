@@ -3,8 +3,8 @@ import axios from 'axios';
 
 class SignUp extends Component {
   state = {
-    username: '',
-    email: '',
+    userName: '',
+    userEmail: '',
     password: ''
   };
   handleChange = e => {
@@ -13,15 +13,20 @@ class SignUp extends Component {
   handleSubmit = e => {
     e.preventDefault();
     //  1.  Grab the email and password out of the component state.
-    const { username, email, password } = this.state;
-    //  2.  Send a POST request to our /auth/signup with email and password
-    axios.post('/auth/signup', { username, email, password }).then(res => {
-      //  3.  If successful, set user into state
-      if (res.status === 200) {
-        const user = res.data.payload;
-        this.props.setUser(user);
-      }
-    });
+    const { userName, userEmail, password } = this.state;
+    //  2.  Send a POST request to our /auth/signup with userEmail and password
+    axios
+      .post('/auth/signup', { userName, userEmail, password })
+      .then(res => {
+        //  3.  If successful, set user into state
+        if (res.status === 200) {
+          const user = res.data.payload;
+          this.props.setUser(user);
+        }
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   };
   render() {
     return (
@@ -31,7 +36,7 @@ class SignUp extends Component {
           <input
             type="text"
             onChange={this.handleChange}
-            name="username"
+            name="userName"
             id="username"
             placeholder="username"
           />
@@ -41,7 +46,7 @@ class SignUp extends Component {
           <input
             type="email"
             onChange={this.handleChange}
-            name="email"
+            name="userEmail"
             id="email"
             placeholder="email"
           />
