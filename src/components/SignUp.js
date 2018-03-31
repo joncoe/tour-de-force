@@ -15,7 +15,7 @@ class SignUp extends Component {
     //  1.  Grab the email and password out of the component state.
     const { username, email, password } = this.state;
     //  2.  Send a POST request to our /auth/signup with email and password
-    axios.post('/auth/signup', { email, password }).then(res => {
+    axios.post('/auth/signup', { username, email, password }).then(res => {
       //  3.  If successful, set user into state
       if (res.status === 200) {
         const user = res.data.payload;
