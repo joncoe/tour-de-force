@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Home extends Component {
   render() {
     return (
       <div>
         <header>
-          <h1>Start of my nice app Home Route.</h1>
+          <h1>Home Page.</h1>
         </header>
-        <p>Hello</p>
+        <ul>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to={{ pathname: '/signup' }}>Sign Up</Link>
+          </li>
+        </ul>
       </div>
     );
   }
