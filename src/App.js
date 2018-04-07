@@ -13,6 +13,7 @@ import Home from './components/Home';
 import ListEvents from './components/ListEvents';
 import AddEvent from './components/AddEvent';
 import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 class App extends Component {
   state = {
@@ -58,9 +59,44 @@ class App extends Component {
       <Router>
         <div className="appContainer">
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/events" component={ListEvents} />
+            <Route
+              exact
+              path="/"
+              render={() => {
+                if (this.state.user) {
+                  // truthy... 0, undefined, null, false, empty string
+                  return <Redirect to="/events" />;
+                } else {
+                  return <Home />;
+                }
+              }}
+            />
+
+            <Route
+              exact
+              path="/events"
+              render={() => {
+                if (!this.state.user) {
+                  // truthy... 0, undefined, null, false, empty string
+                  return <Redirect to="/" />;
+                } else {
+                  return <ListEvents />;
+                }
+              }}
+            />
             <Route exact path="/add-event" component={AddEvent} />
+            <Route
+              exact
+              path="/login"
+              render={() => {
+                if (!this.state.user) {
+                  return <Login />;
+                } else {
+                  return <Redirect to="/events" />;
+                }
+              }}
+            />
+
             <Route
               exact
               path="/signup"
