@@ -9,12 +9,14 @@ class AddEvent extends Component {
       eventCountry: 'Canada',
       venueName: 'Coda',
       performanceDate: '2018-06-06',
-      status: 'Add New Event'
+      status: 'Add New Event',
+      success: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.selectCountry = this.selectCountry.bind(this);
     this.addEvent = this.addEvent.bind(this);
+    this.addAnotherEvent = this.addAnotherEvent.bind(this);
   }
 
   handleInputChange(event) {
@@ -42,7 +44,7 @@ class AddEvent extends Component {
         performanceDate
       })
       .then(() => {
-        this.setState({ status: 'Event Added' });
+        this.setState({ status: 'Event Added', success: true });
       })
       .catch(err => {
         console.log(err.message);
@@ -50,66 +52,86 @@ class AddEvent extends Component {
       });
   }
 
+  addAnotherEvent() {
+    this.setState({
+      eventCity: '',
+      eventCountry: '',
+      venueName: '',
+      performanceDate: '',
+      status: 'Add New Event',
+      success: false
+    });
+  }
+
   render() {
-    return (
-      <div>
-        <h1>Add an Event</h1>
-        <div className="form">
-          <div className="input-roup">
-            <label>City</label>
-            <input
-              type="text"
-              name="eventCity"
-              placeholder="City"
-              value={this.state.eventCity}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
+    if (!this.state.success) {
+      return (
+        <div>
+          <h1>Add an Event</h1>
+          <div className="form">
+            <div className="input-roup">
+              <label>City</label>
+              <input
+                type="text"
+                name="eventCity"
+                placeholder="City"
+                value={this.state.eventCity}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
 
-          <div className="input-roup">
-            <label>Country</label>
-            <input
-              type="text"
-              name="eventCountry"
-              placeholder="Country"
-              value={this.state.eventCountry}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
+            <div className="input-roup">
+              <label>Country</label>
+              <input
+                type="text"
+                name="eventCountry"
+                placeholder="Country"
+                value={this.state.eventCountry}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
 
-          <div className="input-roup">
-            <label>Venue</label>
-            <input
-              type="text"
-              name="venueName"
-              placeholder="Venue"
-              value={this.state.venueName}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
+            <div className="input-roup">
+              <label>Venue</label>
+              <input
+                type="text"
+                name="venueName"
+                placeholder="Venue"
+                value={this.state.venueName}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
 
-          <div className="input-roup">
-            <label>Event Date</label>
+            <div className="input-roup">
+              <label>Event Date</label>
+              <input
+                type="date"
+                name="performanceDate"
+                placeholder="Performance Date"
+                value={this.state.performanceDate}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
             <input
-              type="date"
-              name="performanceDate"
-              placeholder="Performance Date"
-              value={this.state.performanceDate}
-              onChange={this.handleInputChange}
-              required
+              type="submit"
+              value={this.state.status}
+              onClick={this.addEvent}
             />
           </div>
-          <input
-            type="submit"
-            value={this.state.status}
-            onClick={this.addEvent}
-          />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <h2>Successfully added!</h2>
+          <button onClick={this.addAnotherEvent}>Add Another Event</button>
+        </div>
+      );
+    }
   }
 }
 
