@@ -23,6 +23,7 @@ class Login extends Component {
       })
       .then(res => {
         // 2. If we receive a successful response:
+        console.log(res);
         if (res.status === 200) {
           //  - grab the token from the response
           const token = res.data.payload;
@@ -33,7 +34,7 @@ class Login extends Component {
         }
       })
       .catch(err => {
-        console.error('👯🏼‍♂️ Error is: ', err);
+        console.log(err);
       });
   };
 
@@ -51,7 +52,6 @@ class Login extends Component {
               name="userEmail"
               id="login-email"
               placeholder="email"
-              autocomplete="off"
             />
           </div>
           <div>
