@@ -14,6 +14,7 @@ import ListEvents from './components/ListEvents';
 import AddEvent from './components/AddEvent';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import Dashboard from './components/Dashboard';
 
 class App extends Component {
   state = {
@@ -64,7 +65,7 @@ class App extends Component {
               path="/"
               render={() => {
                 if (this.state.user) {
-                  return <Redirect to="/events" />;
+                  return <Redirect to="/dashboard" />;
                 } else {
                   return <Home />;
                 }
@@ -73,12 +74,12 @@ class App extends Component {
 
             <Route
               exact
-              path="/events"
+              path="/dashboard"
               render={() => {
                 if (!this.state.user) {
                   return <Redirect to="/" />;
                 } else {
-                  return <ListEvents />;
+                  return <Dashboard setUser={this.setUser} />;
                 }
               }}
             />
@@ -91,7 +92,7 @@ class App extends Component {
                 if (!this.state.user) {
                   return <Login getCurrentUser={this.getCurrentUser} />;
                 } else {
-                  return <Redirect to="/events" />;
+                  return <Redirect to="/dashboard" />;
                 }
               }}
             />
@@ -101,7 +102,7 @@ class App extends Component {
               path="/signup"
               render={() => {
                 if (this.state.user) {
-                  return <Redirect to="/events" />;
+                  return <Redirect to="/dashboard" />;
                 } else {
                   return <SignUp setUser={this.setUser} />;
                 }
