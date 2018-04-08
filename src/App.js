@@ -57,6 +57,7 @@ class App extends Component {
   };
 
   render() {
+    debugger;
     return (
       <Router>
         <div className="appContainer">
@@ -78,6 +79,7 @@ class App extends Component {
               path="/dashboard"
               render={() => {
                 if (!this.state.user) {
+                  console.log('redirecting to root');
                   return <Redirect to="/" />;
                 } else {
                   return (
@@ -92,6 +94,7 @@ class App extends Component {
               // component={AddEvent}
               render={() => {
                 if (!this.state.user) {
+                  console.log('redirecting to root');
                   return <Redirect to="/" />;
                 } else {
                   return <AddEvent appUser={this.state.user} />;
