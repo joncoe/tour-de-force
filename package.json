@@ -17,7 +17,8 @@
     "react-scripts": "1.1.1"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.17.3"
   },
   "scripts": {
     "build": "concurrently \"npm run server\" \"react-scripts build\"",
