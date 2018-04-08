@@ -57,7 +57,7 @@ class App extends Component {
   };
 
   render() {
-    debugger;
+    // debugger;
     return (
       <Router>
         <div className="appContainer">
