@@ -53,6 +53,7 @@ class App extends Component {
     this.setState({
       user
     });
+    console.log(user);
   };
 
   render() {
@@ -79,11 +80,24 @@ class App extends Component {
                 if (!this.state.user) {
                   return <Redirect to="/" />;
                 } else {
-                  return <Dashboard setUser={this.setUser} />;
+                  return (
+                    <Dashboard setUser={this.setUser} user={this.state.user} />
+                  );
                 }
               }}
             />
-            <Route exact path="/add-event" component={AddEvent} />
+            <Route
+              exact
+              path="/add-event"
+              // component={AddEvent}
+              render={() => {
+                if (!this.state.user) {
+                  return <Redirect to="/" />;
+                } else {
+                  return <AddEvent appUser={this.state.user} />;
+                }
+              }}
+            />
 
             <Route
               exact

@@ -10,6 +10,7 @@ class AddEvent extends Component {
       venueName: 'Coda',
       performanceDate: '2018-06-06',
       status: 'Add New Event',
+      userId: 'hello',
       success: false
     };
 
@@ -35,13 +36,20 @@ class AddEvent extends Component {
 
   addEvent(e) {
     e.preventDefault();
-    const { eventCity, eventCountry, venueName, performanceDate } = this.state;
+    const {
+      eventCity,
+      eventCountry,
+      venueName,
+      performanceDate,
+      userId
+    } = this.state;
     axios
       .post('/event/add', {
         eventCity,
         eventCountry,
         venueName,
-        performanceDate
+        performanceDate,
+        userId
       })
       .then(() => {
         this.setState({ status: 'Event Added', success: true });
@@ -60,6 +68,12 @@ class AddEvent extends Component {
       performanceDate: '',
       status: 'Add New Event',
       success: false
+    });
+  }
+
+  componentDidMount() {
+    this.setState({
+      userId: this.props.appUser._id
     });
   }
 
