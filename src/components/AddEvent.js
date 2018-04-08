@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class AddEvent extends Component {
   constructor() {
     super();
     this.state = {
-      eventCity: 'Toronto',
-      eventCountry: 'Canada',
-      venueName: 'Coda',
-      performanceDate: '2018-06-06',
+      eventCity: '',
+      eventCountry: '',
+      venueName: '',
+      performanceDate: '',
       status: 'Add New Event',
-      userId: 'hello',
       success: false
     };
 
@@ -143,6 +143,9 @@ class AddEvent extends Component {
         <div>
           <h2>Successfully added!</h2>
           <button onClick={this.addAnotherEvent}>Add Another Event</button>
+          <button>
+            <Link to={{ pathname: '/dashboard' }}>Back to Dashboard</Link>
+          </button>
         </div>
       );
     }

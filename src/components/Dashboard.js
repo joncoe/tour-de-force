@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Logout from './Logout';
 import { Link } from 'react-router-dom';
+import ListEvents from './ListEvents';
 
 class Dashboard extends Component {
   render() {
@@ -11,6 +12,10 @@ class Dashboard extends Component {
         <button>
           <Link to={{ pathname: '/add-event' }}>New Event</Link>
         </button>
+
+        <div className="listEvents">
+          <ListEvents />
+        </div>
       </div>
     );
   }
