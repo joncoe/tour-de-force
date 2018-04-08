@@ -20,10 +20,11 @@
     "concurrently": "^3.5.1"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "concurrently \"npm run server\" \"react-scripts build\"",
     "client": "react-scripts start",
     "server": "nodemon lib/server.js  --ignore src/",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"  \"npm run sass\"",
+    "start":
+      "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"  \"npm run sass\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "sass": "sass --watch src/styles/scss:src/styles/css"
