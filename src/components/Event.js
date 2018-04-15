@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
+import moment from 'moment';
 
-const Event = props => {
-  const { city, country, venue, performanceDate } = props;
+class Event extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className="event-detail">
-      <p>
-        City: <strong>{city}</strong>
-      </p>
-      <p>
-        Country: <strong>{country}</strong>
-      </p>
-      <p>
-        Venue: <strong>{venue}</strong>
-      </p>
-      <p>
-        Date: <strong>{performanceDate}</strong>
-      </p>
-    </div>
-  );
+    this.formatDate = this.formatDate.bind(this);
+
+  }
+
+  formatDate() {
+    return moment(this.props.performanceDate).format("MMM Do YY");
+  }
+
+  render() {
+    return (
+      <div className="event-detail" >
+        <p>
+          City: <strong>{this.props.city}</strong><br />
+          Venue: <strong>{this.props.venue}</strong><br />
+          Date: <strong>{this.formatDate()}</strong>
+        </p>
+      </div>
+    );
+  }
 };
 
 export default Event;

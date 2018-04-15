@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { removeToken } from '../services/tokenService';
 
 const Logout = props => {

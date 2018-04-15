@@ -3,6 +3,7 @@ import axios from 'axios';
 import Event from './Event';
 
 class ListEvents extends Component {
+
   constructor() {
     super();
 
@@ -12,11 +13,18 @@ class ListEvents extends Component {
   }
 
   refresh() {
+    const userId = this.props.userId;
+    console.log('user id is: ', userId);
     axios
-      .get('/event/all')
+      .get(`/event/all/`, {
+        params: {
+          userId: userId
+
+        }
+      })
       .then(res => {
         if (res.data.payload) {
-          console.log('set the state');
+          console.log(res.data.payload);
           this.setState({ eventList: res.data.payload });
         }
       })
@@ -30,7 +38,7 @@ class ListEvents extends Component {
   }
 
   render() {
-    console.log('render');
+    // console.log('render');
     return (
       <div>
         <h1>List of Events</h1>
@@ -42,6 +50,7 @@ class ListEvents extends Component {
               venue={singleEvent.venueName}
               performanceDate={singleEvent.performanceDate}
               key={i}
+              id={singleEvent._id}
             />
           );
         })}

@@ -52,6 +52,7 @@ class Login extends Component {
               name="userEmail"
               id="login-email"
               placeholder="email"
+              autoComplete="off"
             />
           </div>
           <div>
@@ -62,6 +63,7 @@ class Login extends Component {
               name="password"
               id="login-password"
               placeholder="Enter your desired password"
+              autoComplete="new-password"
             />
           </div>
           <div>

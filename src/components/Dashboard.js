@@ -14,7 +14,7 @@ class Dashboard extends Component {
         </button>
 
         <div className="listEvents">
-          <ListEvents />
+          <ListEvents userId={this.props.user._id} />
         </div>
       </div>
     );

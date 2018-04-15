@@ -10,7 +10,6 @@ import axios from 'axios';
 import { getToken } from './services/tokenService';
 
 import Home from './components/Home';
-import ListEvents from './components/ListEvents';
 import AddEvent from './components/AddEvent';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
