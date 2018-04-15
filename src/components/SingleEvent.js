@@ -55,6 +55,7 @@ class SingleEvent extends Component {
         City: {evt.eventCity}<br />
         Country: {evt.eventCountry}<br />
         Venue: {evt.venueName}<br />
+        Venue: {evt.venueName}<br />
 
         <Link to="/dashboard">Back to Dashboard</Link>
       </div>
