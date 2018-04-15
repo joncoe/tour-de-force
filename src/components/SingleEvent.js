@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class SingleEvent extends Component {
   constructor(props) {
@@ -11,8 +11,6 @@ class SingleEvent extends Component {
       singleEvent: null,
       returnToDashboard: false
     }
-
-    this.navigateToDashboard = this.navigateToDashboard.bind(this);
 
   }
 
@@ -38,15 +36,6 @@ class SingleEvent extends Component {
     this.loadEvent();
   }
 
-  backToDashboard = () => {
-    // if (this.state.returnToDashboard) {
-    //   return (<Redirect to="/dashboard" />);
-    // }
-  }
-
-  navigateToDashboard = () => {
-    this.setState({ returnToDashboard: true })
-  }
 
   render() {
 
@@ -67,7 +56,7 @@ class SingleEvent extends Component {
         Country: {evt.eventCountry}<br />
         Venue: {evt.venueName}<br />
 
-        <button onClick={this.navigateToDashboard()}>Back to Dashboard</button>
+        <Link to="/dashboard">Back to Dashboard</Link>
       </div>
     )
 
