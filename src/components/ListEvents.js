@@ -14,7 +14,7 @@ class ListEvents extends Component {
 
   refresh() {
     const userId = this.props.userId;
-    console.log('user id is: ', userId);
+    // console.log('user id is: ', userId);
     axios
       .get(`/event/all/`, {
         params: {
@@ -24,7 +24,7 @@ class ListEvents extends Component {
       })
       .then(res => {
         if (res.data.payload) {
-          console.log(res.data.payload);
+          // console.log(res.data.payload);
           this.setState({ eventList: res.data.payload });
         }
       })
@@ -41,7 +41,7 @@ class ListEvents extends Component {
     // console.log('render');
     return (
       <div>
-        <h1>List of Events</h1>
+        <h4>List of Events</h4>
         {this.state.eventList.map((singleEvent, i) => {
           return (
             <Event
@@ -50,7 +50,8 @@ class ListEvents extends Component {
               venue={singleEvent.venueName}
               performanceDate={singleEvent.performanceDate}
               key={i}
-              id={singleEvent._id}
+              eventId={singleEvent._id}
+              userId={this.props.userId}
             />
           );
         })}

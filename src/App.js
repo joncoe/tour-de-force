@@ -14,6 +14,7 @@ import AddEvent from './components/AddEvent';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import SingleEvent from './components/SingleEvent';
 
 class App extends Component {
   state = {
@@ -52,7 +53,6 @@ class App extends Component {
     this.setState({
       user
     });
-    console.log(user);
   };
 
   render() {
@@ -97,6 +97,17 @@ class App extends Component {
                   return <Redirect to="/" />;
                 } else {
                   return <AddEvent appUser={this.state.user} />;
+                }
+              }}
+            />
+
+            <Route
+              path="/tour-event/:eventId"
+              render={(params) => {
+                if (this.state.user !== null) {
+                  return <SingleEvent {...params} />
+                } else {
+                  return <Redirect to="/" />;
                 }
               }}
             />

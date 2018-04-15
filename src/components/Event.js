@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 class Event extends Component {
   constructor(props) {
@@ -20,8 +21,12 @@ class Event extends Component {
           City: <strong>{this.props.city}</strong><br />
           Venue: <strong>{this.props.venue}</strong><br />
           Date: <strong>{this.formatDate()}</strong>
+          <br />
+          <Link
+            to={`/tour-event/${this.props.eventId}`}
+          >View Event</Link>
         </p>
-      </div>
+      </div >
     );
   }
 };
