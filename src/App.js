@@ -15,6 +15,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import SingleEvent from './components/SingleEvent';
+import EditEvent from './components/EditEvent';
 
 class App extends Component {
   state = {
@@ -97,6 +98,21 @@ class App extends Component {
                   return <Redirect to="/" />;
                 } else {
                   return <AddEvent appUser={this.state.user} />;
+                }
+              }}
+            />
+
+
+            <Route
+              exact
+              path="/edit-event/:eventId"
+              // component={AddEvent}
+              render={() => {
+                if (!this.state.user) {
+                  console.log('redirecting to root');
+                  return <Redirect to="/" />;
+                } else {
+                  return <EditEvent appUser={this.state.user} />;
                 }
               }}
             />

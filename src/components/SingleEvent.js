@@ -40,6 +40,7 @@ class SingleEvent extends Component {
   render() {
 
     let evt;
+    const eventId = this.props.match.params.eventId;
 
     if (this.state.singleEvent === null) {
       return <div>Loading</div>;
@@ -57,8 +58,12 @@ class SingleEvent extends Component {
         Venue: {evt.venueName}<br />
         Venue: {evt.venueName}<br />
 
+        <p><Link to={`/edit-event/${eventId}`}>Back to Dashboard</Link></p>
+
         <Link to="/dashboard">Back to Dashboard</Link>
-      </div>
+
+
+      </div >
     )
 
   }
