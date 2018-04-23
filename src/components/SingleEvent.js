@@ -56,9 +56,9 @@ class SingleEvent extends Component {
         City: {evt.eventCity}<br />
         Country: {evt.eventCountry}<br />
         Venue: {evt.venueName}<br />
-        Venue: {evt.venueName}<br />
+        Date: {evt.performanceDate}<br />
 
-        <p><Link to={`/edit-event/${eventId}`}>Back to Dashboard</Link></p>
+        <p><Link to={`/edit-event/${eventId}`}>Edit this event</Link></p>
 
         <Link to="/dashboard">Back to Dashboard</Link>
 

@@ -79,7 +79,7 @@ class App extends Component {
               path="/dashboard"
               render={() => {
                 if (!this.state.user) {
-                  console.log('redirecting to root');
+
                   return <Redirect to="/" />;
                 } else {
                   return (
@@ -107,12 +107,13 @@ class App extends Component {
               exact
               path="/edit-event/:eventId"
               // component={AddEvent}
-              render={() => {
+              render={(params) => {
+                console.log(this.state.user);
                 if (!this.state.user) {
-                  console.log('redirecting to root');
+                  console.log('Edit event redirecting to root');
                   return <Redirect to="/" />;
                 } else {
-                  return <EditEvent appUser={this.state.user} />;
+                  return <EditEvent appUser={this.state.user} {...params} />;
                 }
               }}
             />

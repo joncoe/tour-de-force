@@ -3,21 +3,49 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class EditEvent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       eventCity: '',
       eventCountry: '',
       venueName: '',
       performanceDate: '',
-      status: 'Add New Event',
+      status: 'Edit this event',
       success: false
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.selectCountry = this.selectCountry.bind(this);
-    this.addEvent = this.addEvent.bind(this);
+    this.editEvent = this.editEvent.bind(this);
     this.addAnotherEvent = this.addAnotherEvent.bind(this);
+  }
+
+
+  loadEvent() {
+    const eventId = this.props.match.params.eventId;
+
+    // console.log(this.props.match.params);
+
+    axios
+      .get('/event', {
+        params: {
+          id: eventId
+        }
+      }).then(res => {
+        console.log(res.data.payload);
+        if (res.data.payload) {
+          const obj = res.data.payload;
+          this.setState({
+            eventCity: obj.eventCity,
+            eventCountry: obj.eventCountry,
+            venueName: obj.venueName,
+            performanceDate: obj.performanceDate
+          });
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+
   }
 
   handleInputChange(event) {
@@ -34,7 +62,7 @@ class EditEvent extends Component {
     this.setState({ eventCountry: val });
   }
 
-  addEvent(e) {
+  editEvent(e) {
     e.preventDefault();
     const {
       eventCity,
@@ -44,7 +72,7 @@ class EditEvent extends Component {
       userId
     } = this.state;
     axios
-      .post('/event/add', {
+      .patch('/event/edit', {
         eventCity,
         eventCountry,
         venueName,
@@ -75,13 +103,15 @@ class EditEvent extends Component {
     this.setState({
       userId: this.props.appUser._id
     });
+
+    this.loadEvent();
   }
 
   render() {
     if (!this.state.success) {
       return (
         <div>
-          <h1>Add an Event</h1>
+          <h1>Edit this event</h1>
           <div className="form">
             <div className="input-roup">
               <label>City</label>
@@ -133,7 +163,7 @@ class EditEvent extends Component {
             <input
               type="submit"
               value={this.state.status}
-              onClick={this.addEvent}
+              onClick={this.editEvent}
             />
           </div>
         </div>
@@ -141,8 +171,7 @@ class EditEvent extends Component {
     } else {
       return (
         <div>
-          <h2>Successfully added!</h2>
-          <button onClick={this.addAnotherEvent}>Add Another Event</button>
+          <h2>Event has been changed!</h2>
           <button>
             <Link to={{ pathname: '/dashboard' }}>Back to Dashboard</Link>
           </button>
